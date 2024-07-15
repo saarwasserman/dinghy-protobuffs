@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+
+option go_package = "saarwasserman.com/notifications";
+
+service EMailService {
+    rpc sendActivationEmail(SendActivationEmailRequest) returns (SendActivationEmailResponse);
+}
+
+message SendActivationEmailRequest {
+    string recipient = 1;
+    string user_id = 3;
+    string token = 4;
+}
+
+
+message ActivationEmailRequest {
+    string recipient = 1;
+    string template_file = 2;
+    string user_id = 3;
+    string token = 4;
+}
+
+
+
+message SendActivationEmailResponse {
+
+}
+
