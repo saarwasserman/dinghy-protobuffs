@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 
-option go_package = "saarwasserman.com/notifications";
+option go_package = "github.com/saarwasserman/dinghy-protobuffs/notifications";
 
 service EMailService {
     rpc sendActivationEmail(SendActivationEmailRequest) returns (SendActivationEmailResponse);
@@ -13,7 +13,6 @@ message SendActivationEmailRequest {
     string token = 4;
 }
 
-
 message ActivationEmailRequest {
     string recipient = 1;
     string template_file = 2;
@@ -21,9 +20,6 @@ message ActivationEmailRequest {
     string token = 4;
 }
 
-
-
 message SendActivationEmailResponse {
 
 }
-
