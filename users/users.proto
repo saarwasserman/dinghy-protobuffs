@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+option go_package = "github.com/saarwasserman/dinghy-protobuffs/users";
+
+service Users {
+    rpc RegisterUser(UserRegisterRequest) returns (UserDetailsResponse);
+    rpc ActivateUser(UserActivationRequest) returns (UserDetailsResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc GetUser(UserDetailsRequest) returns (UserDetailsResponse);
+}
+
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token_plaintext = 1;
+}
+
+message LogoutRequest {
+}
+
+message LogoutResponse {
+}
+
+message UserRegisterRequest {
+    string email = 1;
+    string name = 2;
+    string password = 3;
+}
+
+message UserDetailsResponse {
+	int64 id = 1;
+    int64 created_at = 2; // datetime in app
+	string name = 3;
+	string email = 4;
+	bool activated = 5;
+}
+
+message UserActivationRequest {
+    string token_plaintext = 1;
+}
+
+message UserLoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message UserLoginResponse {
+    string token_plaintext = 1;
+}
+
+message UserLogoutRequest {
+
+}
+
+message UserDetailsRequest {
+    
+}
+
+message UserLogoutResponse {
+
+}

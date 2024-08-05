@@ -3,8 +3,8 @@ syntax = "proto3";
 
 option go_package = "github.com/saarwasserman/dinghy-protobuffs/notifications";
 
-service EMailService {
-    rpc sendActivationEmail(SendActivationEmailRequest) returns (SendActivationEmailResponse);
+service Notifications {
+    rpc SendActivationEmail(SendActivationEmailRequest) returns (SendActivationEmailResponse);
 }
 
 message SendActivationEmailRequest {

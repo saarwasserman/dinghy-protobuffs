@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+option go_package = "github.com/saarwasserman/dinghy-protobuffs/auth";
+
+enum TokenScope {
+  ScopeActivation = 0;
+  ScopeAuthentication = 1;
+}
+
+service Authentication {
+    rpc Authenticate(AuthenticationRequest) returns (AuthenticationResponse);
+    rpc SetPassword(SetPasswordRequest) returns (SetPasswordResponse);
+    rpc AddPermissionForUser(AddPermissionForUserRequest) returns (AddPermissionForUserResponse);
+    rpc RemovePermissionForUser(RemovePermissionForUserRequest) returns (RemovePermissionForUserResponse);
+    rpc CreateToken(TokenCreationRequest) returns (TokenCreationResponse);
+    rpc DeleteAllTokensForUser(TokensDeletionRequest) returns (TokensDeletionRequest);
+}
+
+message AuthenticationRequest {
+    string token_scope = 1;
+    string token_plaintext = 2;
+}
+
+message AuthenticationResponse {
+    int64 user_id = 1;
+}
+
+message SetPasswordRequest {
+    int64 user_id = 1;
+    string password = 2;
+}
+
+message SetPasswordResponse {
+}
+
+
+message AddPermissionForUserRequest {
+    int64 user_id = 1;
+    repeated string codes = 2;
+}
+
+message AddPermissionForUserResponse {
+}
+
+message RemovePermissionForUserRequest {
+    int64 user_id = 1;
+    repeated string codes = 2;
+}
+
+message RemovePermissionForUserResponse {
+}
+
+message TokenCreationRequest {
+    string scope = 1;
+    int64 user_id = 2;
+}
+
+message TokenCreationResponse {
+    string token_plaintext = 1;
+    int64 expiry = 2;
+}
+
+message TokensDeletionRequest {
+    string scope = 1;
+    int64 user_id = 2;
+}
+
+message TokensDeletionResponse {
+
+}
