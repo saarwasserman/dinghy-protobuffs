@@ -7,6 +7,15 @@ gen/go/auth:
 	@mkdir -p gen/go
 	protoc --go_out=gen/go --go_opt=paths=source_relative --go-grpc_out=gen/go --go-grpc_opt=paths=source_relative ./auth/auth.proto
 
+.PHONY: gen/python/auth
+gen/python/auth:
+	@echo 'example for generating auth proto code in python..'
+	@echo 'note: include pyi file as it is a readable interface'
+	@echo 'note: might want to change the import in bp2_grpc to use . (dot) as source_relative is not an option in protoc for python'
+	@mkdir -p gen/python
+	python -m grpc_tools.protoc -I. --python_out=gen/python --pyi_out=gen/python --grpc_python_out=gen/python ./auth/auth.proto
+
+
 .PHONY: gen/go/users
 gen/go/users:
 	@echo 'generating users proto code in go..'
